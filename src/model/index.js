@@ -26,12 +26,21 @@ db.sequelize = sequelize;
 
 db.user = require("../model/user.model.js")(sequelize, Sequelize);
 db.userGroup = require("../model/userGroup.model.js")(sequelize, Sequelize);
+db.trainerInfo = require("../model/trainer.model.js")(sequelize, Sequelize);
 
+// User and UserGroup Table Relation
 db.userGroup.hasMany(db.user, {as: "users"  });
-  
 db.user.belongsTo(db.userGroup, {
     foreignKey: "userGroupId",
     as: "userGroup"
+});
+
+// User and TrinerInfo Table Relation
+db.user.hasOne( db.trainerInfo, {as: "trainerInfo"});
+db.trainerInfo.belongsTo(db.user, { 
+  foreignKey: 'userId', 
+  as: 'trinerInfo', 
+  onDelete: 'CASCADE'
 });
 
 db.ROLES = ["admin", "registrar","trainee", "trainer"];

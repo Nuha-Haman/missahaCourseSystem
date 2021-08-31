@@ -3,17 +3,13 @@ const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.userGroup;
 
-const Op = db.Sequelize.Op;
-
 const { v4: uuidv4 } = require('uuid');
-let jwt = require("jsonwebtoken");
-let bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 //sign up
-
 exports.signup = (req, res) => {
 
-  console.log(req.body);
     // Save User to Database
     User.create({
       userCode: uuidv4(),
@@ -29,7 +25,6 @@ exports.signup = (req, res) => {
     })
       .then(user => {
         if (req.body.userGroup) {
-       
            Role.findOne({
             where: {name : req.body.userGroup}
           }).then(role => {
@@ -72,7 +67,6 @@ exports.signup = (req, res) => {
           expiresIn: 86400 // 24 hours
         });
   
-        
         user.getUserGroup().then(role => {
          
           res.status(200).send({
