@@ -5,11 +5,12 @@ const sequelize = new Sequelize(
   config.DB,
   config.USER,
   config.PASSWORD,
+  
   {
     host: config.HOST,
     dialect: config.dialect,
     operatorsAliases: 0,
-
+    logging: false,
     pool: {
       max: config.pool.max,
       min: config.pool.min,
@@ -36,7 +37,7 @@ db.user.belongsTo(db.userGroup, {
 });
 
 // User and TrinerInfo Table Relation
-db.user.hasOne( db.trainerInfo, {as: "trainerInfo"});
+// db.user.hasOne( db.trainerInfo, {as: "trainerInfo"});
 db.trainerInfo.belongsTo(db.user, { 
   foreignKey: 'userId', 
   as: 'trinerInfo', 

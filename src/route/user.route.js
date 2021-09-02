@@ -1,5 +1,7 @@
-const { authJwt } = require("../middleware");
+const { authJwt , upload } = require("../middleware");
+
 const userController = require("../controller/user.controller");
+const trainerController = require("../controller/trainerInfo.controller");
 
 module.exports = function(router) {
   router.use(function(req, res, next) {
@@ -35,6 +37,23 @@ module.exports = function(router) {
 
   //delete user
   router.delete("/userGroup/:id",userController.deleteUserGroup);
+
+
+  //-----------------------------Trainer Info Routes Section -------------------------------//
+  //Insert Trainer Information to database
+  router.post('/user/trainerInfo',upload.single('cv'),trainerController.createTrainer);
+  
+  // update Trainer data
+  router.patch("/user/trainerInfo/:userId",upload.single('cv'),trainerController.updateTrainer);
+
+  //Get All Trainers
+  router.get("/trainer",trainerController.findAllTrainers);
+
+  //Get single Trainer
+  router.get("/trainer/:userId",trainerController.findTrainer);
+  
+  //delete Trainer
+  router.delete("/user/trainerInfo/:userId",trainerController.deleteTrainer);
 
   //------------------------------------------------------------------------------------------------//
   // Routes for users Board

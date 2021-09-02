@@ -5,16 +5,16 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      cv: {
-        type: Sequelize.BLOB("long"),
-      },
       qualification:{
-        type: Sequelize.BLOB("long"),
+        type: Sequelize.TEXT,
       },
       experience:{
-        type: Sequelize.BLOB("long"),
+        type: Sequelize.TEXT,
       },
       courses:{
+        type: Sequelize.TEXT,
+      },
+      cv: {
         type: Sequelize.BLOB("long"),
       }
     });

@@ -27,6 +27,7 @@ exports.findOneUser = (req, res) => {
       res.status(500).send({message: "Error retrieving User with id=" + id});
     });
 };
+
 // update a user data
 exports.updateUser = (req, res) => {
   const id = req.params.id;
