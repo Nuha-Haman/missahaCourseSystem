@@ -31,7 +31,7 @@ db.sequelize.sync();
 // simple route
 app.get("/", (req, res) => {
     res.send({ message: "Welcome to missaha application." });
-    logger.info("Server Sent A Hello World!");
+    logger.info("welcome to the application!");
 });
 
 require('./src/route/auth.route')(app);
